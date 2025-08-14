@@ -1,0 +1,335 @@
+/* Eğitim Paint Uygulaması - Sphinx Özel CSS */
+/* Bu dosya, Sphinx dokümantasyonu için özel stilleri içerir */
+
+/* Ana başlık stilleri */
+.wy-side-nav-search {
+    background-color: #2980B9 !important;
+}
+
+.wy-side-nav-search input[type="text"] {
+    border-color: #3498DB !important;
+}
+
+/* Navigasyon menüsü */
+.wy-nav-side {
+    background-color: #2C3E50 !important;
+}
+
+.wy-nav-side .wy-menu-vertical li.current > a {
+    background-color: #3498DB !important;
+    color: white !important;
+}
+
+.wy-nav-side .wy-menu-vertical li.current > a:hover {
+    background-color: #2980B9 !important;
+}
+
+/* İçerik alanı */
+.wy-nav-content {
+    background-color: #FFFFFF !important;
+}
+
+/* Başlık stilleri */
+h1, h2, h3, h4, h5, h6 {
+    color: #2C3E50 !important;
+    border-bottom: 2px solid #3498DB !important;
+    padding-bottom: 10px !important;
+}
+
+h1 {
+    color: #2980B9 !important;
+    font-size: 2.5em !important;
+}
+
+h2 {
+    color: #3498DB !important;
+    font-size: 2em !important;
+}
+
+h3 {
+    color: #5DADE2 !important;
+    font-size: 1.5em !important;
+}
+
+/* Kod blokları */
+.highlight {
+    background-color: #F8F9FA !important;
+    border: 1px solid #E9ECEF !important;
+    border-radius: 5px !important;
+    padding: 15px !important;
+}
+
+.highlight pre {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Inline kod */
+code {
+    background-color: #F1F2F6 !important;
+    color: #E74C3C !important;
+    padding: 2px 6px !important;
+    border-radius: 3px !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+}
+
+/* Linkler */
+a {
+    color: #3498DB !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #2980B9 !important;
+    text-decoration: underline !important;
+}
+
+/* Tablolar */
+table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
+}
+
+table th {
+    background-color: #3498DB !important;
+    color: white !important;
+    padding: 12px !important;
+    text-align: left !important;
+    border: 1px solid #2980B9 !important;
+}
+
+table td {
+    padding: 10px !important;
+    border: 1px solid #BDC3C7 !important;
+    background-color: #FFFFFF !important;
+}
+
+table tr:nth-child(even) {
+    background-color: #F8F9FA !important;
+}
+
+/* Uyarı kutuları */
+.admonition {
+    border-radius: 5px !important;
+    padding: 15px !important;
+    margin: 20px 0 !important;
+    border-left: 5px solid !important;
+}
+
+.admonition.note {
+    background-color: #E3F2FD !important;
+    border-left-color: #2196F3 !important;
+}
+
+.admonition.warning {
+    background-color: #FFF3E0 !important;
+    border-left-color: #FF9800 !important;
+}
+
+.admonition.danger {
+    background-color: #FFEBEE !important;
+    border-left-color: #F44336 !important;
+}
+
+.admonition.tip {
+    background-color: #E8F5E8 !important;
+    border-left-color: #4CAF50 !important;
+}
+
+/* Butonlar */
+.btn {
+    display: inline-block !important;
+    padding: 10px 20px !important;
+    margin: 10px 5px !important;
+    background-color: #3498DB !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 5px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.btn:hover {
+    background-color: #2980B9 !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.btn-primary {
+    background-color: #3498DB !important;
+}
+
+.btn-success {
+    background-color: #27AE60 !important;
+}
+
+.btn-warning {
+    background-color: #F39C12 !important;
+}
+
+.btn-danger {
+    background-color: #E74C3C !important;
+}
+
+/* Kartlar */
+.card {
+    border: 1px solid #E9ECEF !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.card-header {
+    background-color: #F8F9FA !important;
+    padding: 15px 20px !important;
+    margin: -20px -20px 20px -20px !important;
+    border-radius: 8px 8px 0 0 !important;
+    border-bottom: 1px solid #E9ECEF !important;
+}
+
+.card-title {
+    margin: 0 !important;
+    color: #2C3E50 !important;
+    font-size: 1.25em !important;
+    font-weight: bold !important;
+}
+
+/* Özel sınıflar */
+.centered {
+    text-align: center !important;
+}
+
+.right-aligned {
+    text-align: right !important;
+}
+
+.left-aligned {
+    text-align: left !important;
+}
+
+.highlight-box {
+    background-color: #FFF3E0 !important;
+    border: 2px solid #FF9800 !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+}
+
+.info-box {
+    background-color: #E3F2FD !important;
+    border: 2px solid #2196F3 !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+}
+
+.success-box {
+    background-color: #E8F5E8 !important;
+    border: 2px solid #4CAF50 !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .wy-nav-side {
+        width: 100% !important;
+    }
+    
+    .wy-nav-content {
+        margin-left: 0 !important;
+    }
+    
+    h1 {
+        font-size: 2em !important;
+    }
+    
+    h2 {
+        font-size: 1.5em !important;
+    }
+    
+    h3 {
+        font-size: 1.25em !important;
+    }
+}
+
+/* Yazdırma stilleri */
+@media print {
+    .wy-nav-side,
+    .wy-nav-top {
+        display: none !important;
+    }
+    
+    .wy-nav-content {
+        margin-left: 0 !important;
+    }
+    
+    .highlight {
+        background-color: #FFFFFF !important;
+        border: 1px solid #000000 !important;
+    }
+}
+
+/* Animasyonlar */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Özel ikonlar */
+.icon {
+    display: inline-block !important;
+    width: 1em !important;
+    height: 1em !important;
+    margin-right: 0.5em !important;
+    vertical-align: middle !important;
+}
+
+.icon-python {
+    color: #3776AB !important;
+}
+
+.icon-tkinter {
+    color: #FF6B35 !important;
+}
+
+.icon-paint {
+    color: #E74C3C !important;
+}
+
+.icon-education {
+    color: #27AE60 !important;
+}
+
+/* Footer stilleri */
+.footer {
+    background-color: #2C3E50 !important;
+    color: #FFFFFF !important;
+    padding: 20px 0 !important;
+    margin-top: 40px !important;
+    text-align: center !important;
+}
+
+.footer a {
+    color: #3498DB !important;
+}
+
+.footer a:hover {
+    color: #5DADE2 !important;
+}

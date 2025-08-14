@@ -1,0 +1,70 @@
+# Eğitim Paint Uygulaması - Geliştirme Bağımlılıkları
+# Bu dosya, geliştirme ortamı için gerekli ek kütüphaneleri içerir
+
+# Temel bağımlılıklar
+-r demo1/requirements.txt
+
+# Kod formatlama ve kalite kontrolü
+black>=22.0.0          # Kod formatlayıcı
+flake8>=4.0.0          # Lint kontrolü
+isort>=5.0.0           # Import sıralama
+autopep8>=1.7.0        # PEP 8 uyumluluğu
+
+# Test araçları
+pytest>=6.0.0          # Test framework
+pytest-cov>=3.0.0      # Test coverage
+pytest-mock>=3.6.0     # Mock desteği
+pytest-html>=3.0.0     # HTML test raporu
+
+# Kod analizi
+mypy>=0.950            # Type checking
+bandit>=1.7.0          # Güvenlik analizi
+safety>=1.10.0         # Güvenlik kontrolü
+
+# Git hooks ve pre-commit
+pre-commit>=2.0.0      # Git hooks yönetimi
+commitizen>=2.20.0     # Commit mesaj standartları
+
+# Dokümantasyon
+sphinx>=4.0.0          # Dokümantasyon generator
+sphinx-rtd-theme>=1.0.0 # ReadTheDocs teması
+myst-parser>=0.17.0    # Markdown parser
+sphinx-autodoc-typehints>=1.12.0 # Type hints desteği
+
+# Geliştirme araçları
+ipython>=8.0.0         # Gelişmiş Python shell
+jupyter>=1.0.0         # Jupyter notebook
+ipdb>=0.13.0           # Debugger
+
+# Profiling ve performans
+cProfile>=0.0.0        # Profiling (Python built-in)
+memory-profiler>=0.60.0 # Bellek kullanım analizi
+line-profiler>=3.3.0   # Satır bazlı profiling
+
+# Paket yönetimi
+pip-tools>=6.0.0       # Dependency management
+pipdeptree>=2.0.0      # Dependency tree görüntüleme
+pip-audit>=1.0.0       # Güvenlik denetimi
+
+# IDE ve editör desteği
+python-language-server>=0.36.0 # Language server
+pylsp-mypy>=0.1.0      # MyPy language server
+pylsp-black>=0.1.0     # Black language server
+
+# CI/CD araçları
+tox>=3.24.0             # Test automation
+coverage>=6.0.0         # Test coverage
+codecov>=2.1.0          # Coverage reporting
+
+# Veri analizi (opsiyonel)
+numpy>=1.21.0           # Sayısal işlemler
+matplotlib>=3.5.0       # Grafik çizimi
+pillow>=8.0.0           # Görüntü işleme (zaten mevcut)
+
+# Web geliştirme (opsiyonel)
+flask>=2.0.0            # Web framework
+requests>=2.25.0        # HTTP kütüphanesi
+beautifulsoup4>=4.9.0   # HTML parsing
+
+# Not: Bu dosyayı sadece geliştirme ortamında kullanın
+# Üretim ortamında sadece demo1/requirements.txt kullanın
