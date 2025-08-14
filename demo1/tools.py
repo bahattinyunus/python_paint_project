@@ -4,7 +4,7 @@ class Tool:
     Örneğin: Kalem (pen), fırça (brush), silgi (eraser) vb.
 
     Özellikler:
-    - name  : Araç ismi (örn. "Pen", "Brush")
+    - name  : Araç ismi (örn. "Kalem", "Fırça")
     - color : Renk (örn. "#000000" → siyah)
     - size  : Kalınlık (örn. 5 → 5px çizim)
     """

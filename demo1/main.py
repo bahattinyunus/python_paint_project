@@ -12,15 +12,16 @@ from tkinter import filedialog, messagebox
 from PIL import ImageTk, Image
 from tkinter.filedialog import asksaveasfile
 from math import sqrt
+import os
 # defined
 from canvas_image import CreateCanvasObject
 from tools import Tool
 from about import *
 
-pen = Tool('Pen', 'black', 2)
-brush = Tool('Brush', 'green', 5)
-eraser = Tool('Eraser', 'white', 5)
-shapes = Tool('Shape', 'black', 2)
+pen = Tool('Kalem', 'black', 2)
+brush = Tool('Fırça', 'green', 5)
+eraser = Tool('Silgi', 'white', 5)
+shapes = Tool('Şekil', 'black', 2)
 
 tools = [pen, brush, eraser, shapes]
 
@@ -35,6 +36,30 @@ global shape_id
 global count
 global shape
 count = 0
+
+def show_welcome_message():
+    """Kullanıcıya hoş geldin mesajı gösterir"""
+    welcome_text = """
+🎨 Eğitim Paint Uygulamasına Hoş Geldiniz!
+
+Bu uygulama Python programlama öğrenmek isteyenler için hazırlanmıştır.
+
+📚 Öğrenebileceğiniz Konular:
+• Tkinter GUI kütüphanesi
+• Canvas widget ile çizim
+• Event handling (olay yönetimi)
+• Menü sistemi
+• Dosya işlemleri
+
+🎯 Başlamak için:
+1. Kalem, Fırça veya Silgi araçlarını seçin
+2. Renk seçici ile istediğiniz rengi kullanın
+3. Boyut ayarları ile çizim kalınlığını değiştirin
+4. Şekil menüsünden geometrik şekiller çizin
+
+İyi eğlenceler! 🚀
+    """
+    messagebox.showinfo("🎨 Hoş Geldiniz!", welcome_text)
 
 
 def get_mouse_posn(event):
@@ -69,7 +94,7 @@ def paint(e):
 
 def donothing():
     filewin = Toplevel(window)
-    button = Button(filewin, text="Do nothing button")
+    button = Button(filewin, text="Hiçbir şey yapma butonu")
     button.pack()
 
 
@@ -130,7 +155,7 @@ def erase():
 
 
 def openfilename():
-    filename = filedialog.askopenfilename(title='Open')
+    filename = filedialog.askopenfilename(title='Dosya Aç')
     return filename
 
 
@@ -287,20 +312,20 @@ def getImage():
     img = Image.open(io.BytesIO(ps.encode('utf-8')))
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H%M%S')
-    filename = 'Canvas' + st + '.jpg'
+    filename = 'Tuval' + st + '.jpg'
     img.save(filename, 'jpeg')
-    messagebox.showinfo("Successfull", "Image saved as " + filename)
+    messagebox.showinfo("Başarılı", "Resim " + filename + " olarak kaydedildi")
 
 
 def file_saveas():
     ps = cv.postscript(colormode='color')
     img = Image.open(io.BytesIO(ps.encode('utf-8')))
-    files = [('JPG FIle', '*.jpg*')]
+    files = [('JPG Dosyası', '*.jpg*')]
     f = asksaveasfile(mode='w', defaultextension=".jpg", filetypes=files)
     if f is None:
         return
     img.save(f, 'jpeg')
-    messagebox.showinfo("Successfull", "Image saved as " + str(f))
+    messagebox.showinfo("Başarılı", "Resim " + str(f) + " olarak kaydedildi")
 
 
 def undo():
@@ -311,57 +336,72 @@ def undo():
 
 
 def exit_function():
-    if messagebox.askyesno("Close the window", "Do you want to close the window ?", icon='warning'):
+    if messagebox.askyesno("Pencereyi Kapat", "Pencereyi kapatmak istiyor musunuz?", icon='warning'):
         window.destroy()
 
 
 window = tkinter.Tk()
-window.title("Paint Board")
-photo = PhotoImage(file="icon.png")
-window.iconphoto(False, photo)
+window.title("🎨 Eğitim Paint Uygulaması")
+
+# Icon dosyasını doğru yoldan yükle
+try:
+    # Mevcut dizini al
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    icon_path = os.path.join(current_dir, "icon.png")
+    if os.path.exists(icon_path):
+        photo = PhotoImage(file=icon_path)
+        window.iconphoto(False, photo)
+    else:
+        print(f"Icon dosyası bulunamadı: {icon_path}")
+except Exception as e:
+    print(f"Icon yükleme hatası: {e}")
+
 h = window.winfo_screenheight()
 w = window.winfo_screenwidth()
 window.geometry(str(w) + 'x' + str(h))
+
+# Hoş geldin mesajını göster
+show_welcome_message()
 
 
 menubar = Menu(window, activeborderwidth=2, activebackground='white', activeforeground='green', bg='#F0F0F0', relief=RAISED)
 
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="New", command=reset)
-filemenu.add_command(label="Open", command=fopen)
-filemenu.add_command(label="Save", command=getImage)
-filemenu.add_command(label="Save as", command=file_saveas)
-filemenu.add_command(label="Close", command=reset)
-filemenu.add_command(label="Exit", command=exit_function)
-menubar.add_cascade(label="File", menu=filemenu)
+filemenu.add_command(label="Yeni", command=reset)
+filemenu.add_command(label="Aç", command=fopen)
+filemenu.add_command(label="Kaydet", command=getImage)
+filemenu.add_command(label="Farklı Kaydet", command=file_saveas)
+filemenu.add_command(label="Temizle", command=reset)
+filemenu.add_command(label="Çıkış", command=exit_function)
+menubar.add_cascade(label="Dosya", menu=filemenu)
 
 editmenu = Menu(menubar, tearoff=0)
-editmenu.add_command(label="Undo", command=undo)
-editmenu.add_command(label="Delete All", command=reset)
-menubar.add_cascade(label="Edit", menu=editmenu)
+editmenu.add_command(label="Geri Al", command=undo)
+editmenu.add_command(label="Tümünü Sil", command=reset)
+menubar.add_cascade(label="Düzenle", menu=editmenu)
 
 insertmenu = Menu(menubar, tearoff=0)
-insertmenu.add_command(label='Add Image', command=insert_image)
-insertmenu.add_command(label='Line', command=drawLine)
-insertmenu.add_command(label='Rectangle', command=drawrect)
-insertmenu.add_command(label='Circle', command=drawcircle)
+insertmenu.add_command(label='Resim Ekle', command=insert_image)
+insertmenu.add_command(label='Çizgi', command=drawLine)
+insertmenu.add_command(label='Dikdörtgen', command=drawrect)
+insertmenu.add_command(label='Çember', command=drawcircle)
 insertmenu.add_command(label='Oval', command=drawoval)
-menubar.add_cascade(label='Insert', menu=insertmenu)
+menubar.add_cascade(label='Ekle', menu=insertmenu)
 
-menubar.add_command(label="Pen", command=usepen)
-menubar.add_command(label="Brush", command=usebrush)
-menubar.add_command(label="Eraser", command=erase)
-menubar.add_command(label="Color", command=newcolor)
+menubar.add_command(label="Kalem", command=usepen)
+menubar.add_command(label="Fırça", command=usebrush)
+menubar.add_command(label="Silgi", command=erase)
+menubar.add_command(label="Renk", command=newcolor)
 
 menubar.add_command(label="-", command=decrease)
 menubar.add_command(label=tools[selectedindex].size, state=DISABLED)
 menubar.add_command(label="+", command=increase)
 
 helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Help Index", command=help)
-helpmenu.add_command(label="Author", command=author)
-helpmenu.add_command(label="About", command=about)
-menubar.add_cascade(label="Help", menu=helpmenu)
+helpmenu.add_command(label="Yardım", command=show_help)
+helpmenu.add_command(label="Yazar", command=show_author)
+helpmenu.add_command(label="Hakkında", command=show_about)
+menubar.add_cascade(label="Yardım", menu=helpmenu)
 
 cv = Canvas(window, bg='white', width=300, height=300)
 cv.pack(expand=YES, fill=BOTH)

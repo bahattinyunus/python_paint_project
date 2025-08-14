@@ -13,9 +13,9 @@ def show_about(master=None):
     Bu fonksiyon her yerden çağrılabilir.
     """
     messagebox.showinfo(
-        "About Tkinter Paint",
-        "This is the newest version of the Paint application using Tkinter.\n"
-        "Tkinter Paint v1.00"
+        "Tkinter Paint Hakkında",
+        "Bu, Tkinter kullanarak geliştirilmiş Paint uygulamasının en yeni sürümüdür.\n"
+        "Tkinter Paint v1.00 - Eğitim Projesi"
     )
 
 # === 2. Yardım Penceresi ===
@@ -25,7 +25,7 @@ def show_help(master=None):
     Bu pencere ayrı bir Tk penceresi yerine Toplevel olarak açılır.
     """
     help_window = tk.Toplevel(master)
-    help_window.title('Help - Paint App')
+    help_window.title('Yardım - Paint Uygulaması')
     help_window.geometry("500x500")
     help_window.resizable(False, False)
 
@@ -33,20 +33,28 @@ def show_help(master=None):
     canvas.pack(expand=tk.YES, fill=tk.BOTH)
 
     help_text = """
-    === Paint App Features ===
+    === Paint Uygulaması Özellikleri ===
 
-    ✏️ Tools:
-        • Pen  → Custom size & color
-        • Brush → Adjustable size & color
-        • Shapes → Rectangle, Circle, Oval, Line
+    ✏️ Araçlar:
+        • Kalem  → Özelleştirilebilir boyut ve renk
+        • Fırça → Ayarlanabilir boyut ve renk
+        • Şekiller → Dikdörtgen, Çember, Oval, Çizgi
 
-    🖼️ Image:
-        • Add images to your canvas
-        • Open existing images
-        • Save your work as an image file
+    🖼️ Resim İşlemleri:
+        • Tuvalinize resim ekleyin
+        • Mevcut resimleri açın
+        • Çalışmanızı resim dosyası olarak kaydedin
+        
+    🎨 Kullanım İpuçları:
+        • Kalem aracı ile serbest çizim yapın
+        • Fırça ile daha kalın çizgiler çizin
+        • Silgi ile hatalarınızı düzeltin
+        • Şekil araçları ile geometrik şekiller çizin
+        • Renk seçici ile istediğiniz rengi kullanın
+        • Boyut ayarları ile çizim kalınlığını değiştirin
     """
 
-    canvas.create_text(250, 30, anchor=tk.CENTER, font=("Helvetica", 16, "bold"), text="How to Use?")
+    canvas.create_text(250, 30, anchor=tk.CENTER, font=("Helvetica", 16, "bold"), text="Nasıl Kullanılır?")
     canvas.create_text(20, 70, anchor=tk.NW, width=460, font=("Courier", 10), text=help_text)
 
 # === 3. Yazar Bilgi Penceresi ===
@@ -55,7 +63,7 @@ def show_author(master=None):
     Uygulamanın geliştiricisine dair bilgileri ve görselini gösterir.
     """
     author_window = tk.Toplevel(master)
-    author_window.title('About the Author')
+    author_window.title('Geliştirici Hakkında')
     author_window.geometry("500x500")
     author_window.resizable(False, False)
 
@@ -78,9 +86,11 @@ def show_author(master=None):
 
     # Açıklama metni
     description = (
-        "This application was built using Tkinter.\n"
-        "Tkinter is a Python binding to the Tk GUI toolkit.\n"
-        "You can draw shapes, lines, text, and more using canvas."
+        "Bu uygulama Tkinter kullanılarak geliştirilmiştir.\n"
+        "Tkinter, Python'un Tk GUI toolkit'ine bağlantısıdır.\n"
+        "Canvas kullanarak şekiller, çizgiler, metin ve daha fazlasını çizebilirsiniz.\n\n"
+        "Bu proje eğitim amaçlı hazırlanmıştır ve Python programlama\n"
+        "öğrenmek isteyenler için ideal bir başlangıç projesidir."
     )
     canvas.create_text(250, 280, anchor=tk.CENTER, width=460, font=("Arial", 11), text=description)
 
@@ -88,6 +98,6 @@ def show_author(master=None):
     def open_github(event=None):
         webbrowser.open_new("https://github.com/swaroopmaddu/")
 
-    github_link = tk.Label(author_window, text="Visit GitHub Profile", fg="blue", cursor="hand2", bg="white", font=("Arial", 10, "underline"))
+    github_link = tk.Label(author_window, text="GitHub Profilini Ziyaret Et", fg="blue", cursor="hand2", bg="white", font=("Arial", 10, "underline"))
     github_link.place(x=180, y=450)
     github_link.bind("<Button-1>", open_github)
