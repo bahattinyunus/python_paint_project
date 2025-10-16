@@ -340,71 +340,76 @@ def exit_function():
         window.destroy()
 
 
-window = tkinter.Tk()
-window.title("🎨 Eğitim Paint Uygulaması")
+def main():
+    global window, menubar, cv
 
-# Icon dosyasını doğru yoldan yükle
-try:
-    # Mevcut dizini al
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    icon_path = os.path.join(current_dir, "icon.png")
-    if os.path.exists(icon_path):
-        photo = PhotoImage(file=icon_path)
-        window.iconphoto(False, photo)
-    else:
-        print(f"Icon dosyası bulunamadı: {icon_path}")
-except Exception as e:
-    print(f"Icon yükleme hatası: {e}")
+    window = tkinter.Tk()
+    window.title("🎨 Eğitim Paint Uygulaması")
 
-h = window.winfo_screenheight()
-w = window.winfo_screenwidth()
-window.geometry(str(w) + 'x' + str(h))
+    # Icon dosyasını doğru yoldan yükle
+    try:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        icon_path = os.path.join(current_dir, "icon.png")
+        if os.path.exists(icon_path):
+            photo = PhotoImage(file=icon_path)
+            window.iconphoto(False, photo)
+        else:
+            print(f"Icon dosyası bulunamadı: {icon_path}")
+    except Exception as e:
+        print(f"Icon yükleme hatası: {e}")
 
-# Hoş geldin mesajını göster
-show_welcome_message()
+    h = window.winfo_screenheight()
+    w = window.winfo_screenwidth()
+    window.geometry(str(w) + 'x' + str(h))
+
+    # Hoş geldin mesajını göster
+    show_welcome_message()
+
+    menubar = Menu(window, activeborderwidth=2, activebackground='white', activeforeground='green', bg='#F0F0F0', relief=RAISED)
+
+    filemenu = Menu(menubar, tearoff=0)
+    filemenu.add_command(label="Yeni", command=reset)
+    filemenu.add_command(label="Aç", command=fopen)
+    filemenu.add_command(label="Kaydet", command=getImage)
+    filemenu.add_command(label="Farklı Kaydet", command=file_saveas)
+    filemenu.add_command(label="Temizle", command=reset)
+    filemenu.add_command(label="Çıkış", command=exit_function)
+    menubar.add_cascade(label="Dosya", menu=filemenu)
+
+    editmenu = Menu(menubar, tearoff=0)
+    editmenu.add_command(label="Geri Al", command=undo)
+    editmenu.add_command(label="Tümünü Sil", command=reset)
+    menubar.add_cascade(label="Düzenle", menu=editmenu)
+
+    insertmenu = Menu(menubar, tearoff=0)
+    insertmenu.add_command(label='Resim Ekle', command=insert_image)
+    insertmenu.add_command(label='Çizgi', command=drawLine)
+    insertmenu.add_command(label='Dikdörtgen', command=drawrect)
+    insertmenu.add_command(label='Çember', command=drawcircle)
+    insertmenu.add_command(label='Oval', command=drawoval)
+    menubar.add_cascade(label='Ekle', menu=insertmenu)
+
+    menubar.add_command(label="Kalem", command=usepen)
+    menubar.add_command(label="Fırça", command=usebrush)
+    menubar.add_command(label="Silgi", command=erase)
+    menubar.add_command(label="Renk", command=newcolor)
+
+    menubar.add_command(label="-", command=decrease)
+    menubar.add_command(label=tools[selectedindex].size, state=DISABLED)
+    menubar.add_command(label="+", command=increase)
+
+    helpmenu = Menu(menubar, tearoff=0)
+    helpmenu.add_command(label="Yardım", command=show_help)
+    helpmenu.add_command(label="Yazar", command=show_author)
+    helpmenu.add_command(label="Hakkında", command=show_about)
+    menubar.add_cascade(label="Yardım", menu=helpmenu)
+
+    cv = Canvas(window, bg='white', width=300, height=300)
+    cv.pack(expand=YES, fill=BOTH)
+
+    window.config(menu=menubar)
+    window.mainloop()
 
 
-menubar = Menu(window, activeborderwidth=2, activebackground='white', activeforeground='green', bg='#F0F0F0', relief=RAISED)
-
-filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Yeni", command=reset)
-filemenu.add_command(label="Aç", command=fopen)
-filemenu.add_command(label="Kaydet", command=getImage)
-filemenu.add_command(label="Farklı Kaydet", command=file_saveas)
-filemenu.add_command(label="Temizle", command=reset)
-filemenu.add_command(label="Çıkış", command=exit_function)
-menubar.add_cascade(label="Dosya", menu=filemenu)
-
-editmenu = Menu(menubar, tearoff=0)
-editmenu.add_command(label="Geri Al", command=undo)
-editmenu.add_command(label="Tümünü Sil", command=reset)
-menubar.add_cascade(label="Düzenle", menu=editmenu)
-
-insertmenu = Menu(menubar, tearoff=0)
-insertmenu.add_command(label='Resim Ekle', command=insert_image)
-insertmenu.add_command(label='Çizgi', command=drawLine)
-insertmenu.add_command(label='Dikdörtgen', command=drawrect)
-insertmenu.add_command(label='Çember', command=drawcircle)
-insertmenu.add_command(label='Oval', command=drawoval)
-menubar.add_cascade(label='Ekle', menu=insertmenu)
-
-menubar.add_command(label="Kalem", command=usepen)
-menubar.add_command(label="Fırça", command=usebrush)
-menubar.add_command(label="Silgi", command=erase)
-menubar.add_command(label="Renk", command=newcolor)
-
-menubar.add_command(label="-", command=decrease)
-menubar.add_command(label=tools[selectedindex].size, state=DISABLED)
-menubar.add_command(label="+", command=increase)
-
-helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Yardım", command=show_help)
-helpmenu.add_command(label="Yazar", command=show_author)
-helpmenu.add_command(label="Hakkında", command=show_about)
-menubar.add_cascade(label="Yardım", menu=helpmenu)
-
-cv = Canvas(window, bg='white', width=300, height=300)
-cv.pack(expand=YES, fill=BOTH)
-
-window.config(menu=menubar)
-window.mainloop()
+if __name__ == "__main__":
+    main()
