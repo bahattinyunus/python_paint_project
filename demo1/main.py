@@ -14,9 +14,9 @@ from tkinter.filedialog import asksaveasfile
 from math import sqrt
 import os
 # defined
-from canvas_image import CreateCanvasObject
-from tools import Tool
-from about import *
+from .canvas_image import CreateCanvasObject
+from .tools import Tool
+from .about import *
 
 pen = Tool('Kalem', 'black', 2)
 brush = Tool('Fırça', 'green', 5)
